@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>KERETA SEWA &  LORI HIJRAH BESTARI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style type="text/css">
+        /* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10% auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    border: 1px solid #999;
+    border-radius: 5px;
+    outline: 0;
+    padding: 20px;
+}
+/* Modal styles */
+.usermodal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.usermodal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    </style>
+  </head>
+  <body>
+    
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	  <div class="container">
+	    <a class="navbar-brand" href="admindashboard">hij<span>rah</span></a>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="oi oi-menu"></span> Menu
+	    </button>
+
+	    <div class="collapse navbar-collapse" id="ftco-nav">
+	      <ul class="navbar-nav ml-auto">
+                    <li id="dashboardtext" class="active nav-item ">
+                      <a id="dashboardlink" href="dashboard" class="nav-link">Dashboard</a>
+                    </li>
+	        <li class="nav-item"><a href="admincontact" class="nav-link">Contact</a></li>
+	        <li class="nav-item"><a href="admincar" class="nav-link">Cars</a></li>
+					<li id="loginLogoutText" class="nav-item">
+					  <a id="loginLogoutLink" href="login.html" class="nav-link">Login</a>
+					</li>
+
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+    <!-- END nav -->
+    
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-dashboard">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <!-- Admin Info Section -->
+                <div class="admin-info">
+                    <h2>Welcome, <span id="adminName">Loading...</span></h2>
+                    <p>Your admin dashboard is shown below. You can manage users and bookings.</p>
+                </div>
+
+                <!-- Bookings Table -->
+                <div class="table-responsive">
+                    <h3>All User Bookings</h3>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Car</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Status</th>
+                                <th>Total Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminBookingsTable">
+                            <!-- Bookings will be dynamically injected here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Update Admin Info Button -->
+                <div class="mt-4">
+                    <button href="adminsignup.html" id="updateAdminInfo" class="btn btn-primary">Add New Admin</button>
+                </div>
+<!-- User Account Deletion Button -->
+<div class="mt-4">
+    <button class="btn btn-danger" id="removeUserBtn">Remove User</button>
+</div>
+
+<!-- Modal for displaying users -->
+<div id="userModal" class="usermodal">
+    <div class="usermodal-content">
+        <span class="close" id="userClose">&times;</span>
+        <h2 id="userModalTitle">Select User to Remove</h2>
+        <ul id="userList"></ul>
+    </div>
+</div>
+
+<!-- Admin Account Deletion Button -->
+<div class="mt-4">
+    <button class="btn btn-danger" id="removeAdminBtn">Remove Admin</button>
+</div>
+
+<!-- Modal for displaying users or admins -->
+<div id="userAdminModal" class="usermodal">
+    <div class="usermodal-content">
+        <span class="close" id="userclose">&times;</span>
+        <h2 id="usermodalTitle">Select Admin to Remove</h2>
+        <ul id="userAdminList"></ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal Structure -->
+<div id="bookingModal" class="modal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Booking Details</h5>
+                <button type="button" class="close" onclick="closeModal()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Booking and User Details will be injected here -->
+                <p id="bookingDetails">Loading...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="updateBookingStatus('approved')">Approve</button>
+                <button type="button" class="btn btn-danger" onclick="updateBookingStatus('rejected')">Reject</button>
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function closeModal() {
+    document.getElementById('bookingModal').style.display = 'none';
+}
+document.getElementById('updateAdminInfo').addEventListener('click', function() {
+    window.location.href = 'adminsignup.html';
+});
+
+function loadUserDetails() {
+    fetch('/api/check-session')  // Check session for logged-in user
+        .then(response => response.json())
+        .then(data => {
+            if (data.loggedIn) {
+                // If logged in, fetch user's name and populate the page
+                const userName = data.user.first_name;  // Assuming 'first_name' is part of the user object
+                document.getElementById('adminName').textContent = userName;
+                loadAllBookings();
+            } else {
+                // Redirect to login page if user is not logged in
+                window.location.href = 'login.html';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching user details:', error);
+            alert('Failed to load user details. Please try again.');
+            window.location.href = 'login.html'; // Redirect to login if session check fails
+        });
+}
+// Function to load all bookings and populate the table
+function loadAllBookings() {
+    fetch('/api/bookings')
+        .then(response => response.json())
+        .then(bookings => {
+            const bookingsTable = document.getElementById('adminBookingsTable');
+            bookingsTable.innerHTML = ''; // Clear existing table rows
+
+            bookings.forEach(booking => {
+                // Ensure total_price is a number
+                const totalPrice = parseFloat(booking.total_price);
+
+                if (isNaN(totalPrice)) {
+                    console.error('Invalid total price:', booking.total_price);
+                    return;  // Skip the booking if the price is invalid
+                }
+                const row = document.createElement('tr');
+
+                // Create table cells for each booking property
+                const usernameCell = document.createElement('td');
+                usernameCell.textContent = booking.customer_name;
+                row.appendChild(usernameCell);
+
+                const carCell = document.createElement('td');
+                carCell.textContent = booking.car_name;
+                row.appendChild(carCell);
+
+                const startDateCell = document.createElement('td');
+                startDateCell.textContent = new Date(booking.start_date).toLocaleDateString();
+                row.appendChild(startDateCell);
+
+                const endDateCell = document.createElement('td');
+                endDateCell.textContent = new Date(booking.end_date).toLocaleDateString();
+                row.appendChild(endDateCell);
+
+                const statusCell = document.createElement('td');
+                statusCell.textContent = booking.status;
+                row.appendChild(statusCell);
+
+                const totalPriceCell = document.createElement('td');
+                totalPriceCell.textContent = `RM ${totalPrice.toFixed(2)}`;
+                row.appendChild(totalPriceCell);
+
+                const actionCell = document.createElement('td');
+                const actionButton = document.createElement('button');
+                actionButton.textContent = 'View Details';
+                actionButton.classList.add('btn', 'btn-primary');
+                actionButton.onclick = () => viewBookingDetails(booking.booking_id);
+                actionCell.appendChild(actionButton);
+                row.appendChild(actionCell);
+
+                bookingsTable.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Error loading bookings:', error);
+            alert('Failed to load bookings. Please try again.');
+        });
+}
+
+function viewBookingDetails(bookingId) {
+    // Fetch booking details from the server
+    fetch(`/api/bookings/${bookingId}`)
+        .then(response => response.json())
+        .then(data => {
+            // Populate the modal with booking and user details
+            const bookingDetails = `
+                <p><strong>Customer Name:</strong> ${data.customer_name}</p>
+                <p><strong>IC / Passport:</strong> ${data.ic_passport_number}</p>
+                <p><strong>License No:</strong> ${data.license_number}</p>
+                <p><strong>Phone No :</strong> ${data.phone_number}</p>
+                <p><strong>Customer Name:</strong> ${data.customer_name}</p>
+                <p><strong>Car:</strong> ${data.car_name}</p>
+                <p><strong>Car Availability:</strong> ${data.car_status}</p>
+                <p><strong>Start Date:</strong> ${new Date(data.start_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
+                <p><strong>End Date:</strong> ${new Date(data.end_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
+                <p><strong>Status:</strong> ${data.status}</p>
+                <p><strong>Total Price:</strong>RM ${parseFloat(data.total_price).toFixed(2)}</p>
+            `;
+            document.getElementById('bookingDetails').innerHTML = bookingDetails;
+
+            // Store the booking ID for status updates
+            document.getElementById('bookingModal').dataset.bookingId = bookingId;
+
+            // Display the modal
+            document.getElementById('bookingModal').style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error fetching booking details:', error);
+            alert('Failed to load booking details. Please try again.');
+        });
+}
+function updateBookingStatus(status) {
+    const bookingId = document.getElementById('bookingModal').dataset.bookingId;
+
+    fetch(`/api/bookings/${bookingId}/${status}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: status }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(`Booking has been ${status}.`);
+                closeModal();
+                // Optionally, refresh the bookings list or update the UI accordingly
+            } else {
+                alert('Failed to update booking status. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error updating booking status:', error);
+            alert('Failed to update booking status. Please try again.');
+        });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const removeAdminBtn = document.getElementById('removeAdminBtn');
+    const userAdminModal = document.getElementById('userAdminModal');
+    const closeModal = document.getElementById('userclose');
+    const userAdminList = document.getElementById('userAdminList');
+    const modalTitle = document.getElementById('usermodalTitle');
+
+    // Function to fetch and display admins
+    async function fetchAndDisplayAdmins() {
+        try {
+            const response = await fetch('/api/admins');
+            const data = await response.json();
+            if (data.success) {
+                userAdminList.innerHTML = ''; // Clear previous list
+                data.items.forEach(admin => {
+                    const li = document.createElement('li');
+                    li.textContent = admin.username;
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.textContent = 'Delete';
+                    deleteBtn.classList.add('btn', 'btn-danger', 'ml-2');
+                    deleteBtn.addEventListener('click', () => deleteAdmin(admin.id));
+                    li.appendChild(deleteBtn);
+                    userAdminList.appendChild(li);
+                });
+                userAdminModal.style.display = 'block';
+                modalTitle.textContent = 'Select Admin to Remove';
+            } else {
+                alert('Failed to fetch admins.');
+            }
+        } catch (error) {
+            console.error('Error fetching admins:', error);
+            alert('An error occurred while fetching admins.');
+        }
+    }
+
+    // Function to handle deletion
+    async function deleteAdmin(id) {
+        const confirmation = confirm('Are you sure you want to delete this admin?');
+        if (confirmation) {
+            try {
+                const response = await fetch(`/api/admins/${id}`, { method: 'DELETE' });
+                const data = await response.json();
+                if (data.success) {
+                    alert('Admin deleted successfully.');
+                    fetchAndDisplayAdmins(); // Refresh the list
+                } else {
+                    alert('Failed to delete admin.');
+                }
+            } catch (error) {
+                console.error('Error deleting admin:', error);
+                alert('An error occurred while deleting the admin.');
+            }
+        }
+    }
+
+    // Event listener for the "Remove Admin" button
+    removeAdminBtn.addEventListener('click', fetchAndDisplayAdmins);
+
+    // Close modal when clicking on the close button
+    closeModal.addEventListener('click', () => {
+        userAdminModal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside of the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === userAdminModal) {
+            userAdminModal.style.display = 'none';
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const removeUserBtn = document.getElementById('removeUserBtn');
+    const userModal = document.getElementById('userModal');
+    const closeModal = document.getElementById('userClose');
+    const userList = document.getElementById('userList');
+    const modalTitle = document.getElementById('userModalTitle');
+
+    // Function to fetch and display users
+    async function fetchAndDisplayUsers() {
+        try {
+            const response = await fetch('/api/users');
+            const data = await response.json();
+            if (data.success) {
+                userList.innerHTML = ''; // Clear previous list
+                data.items.forEach(user => {
+                    const li = document.createElement('li');
+                    li.textContent = user.username;
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.textContent = 'Delete';
+                    deleteBtn.classList.add('btn', 'btn-danger', 'ml-2');
+                    deleteBtn.addEventListener('click', () => deleteUser(user.id));
+                    li.appendChild(deleteBtn);
+                    userList.appendChild(li);
+                });
+                userModal.style.display = 'block';
+                modalTitle.textContent = 'Select User to Remove';
+            } else {
+                alert('Failed to fetch users.');
+            }
+        } catch (error) {
+            console.error('Error fetching users:', error);
+            alert('An error occurred while fetching users.');
+        }
+    }
+
+    // Function to handle deletion
+    async function deleteUser(id) {
+        const confirmation = confirm('Are you sure you want to delete this user?');
+        if (confirmation) {
+            try {
+                const response = await fetch(`/api/users/${id}`, { method: 'DELETE' });
+                const data = await response.json();
+                if (data.success) {
+                    alert('User deleted successfully.');
+                    fetchAndDisplayUsers(); // Refresh the list
+                } else {
+                    alert('Failed to delete user.');
+                }
+            } catch (error) {
+                console.error('Error deleting user:', error);
+                alert('An error occurred while deleting the user.');
+            }
+        }
+    }
+
+    // Event listener for the "Remove User" button
+    removeUserBtn.addEventListener('click', fetchAndDisplayUsers);
+
+    // Close modal when clicking on the close button
+    closeModal.addEventListener('click', () => {
+        userModal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside of the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === userModal) {
+            userModal.style.display = 'none';
+        }
+    });
+});
+
+// Load user details and bookings when the page is loaded
+window.onload = loadUserDetails;
+
+</script>
+
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2"><a href="index.html" class="logo">hij<span>rah</span></a></h2>
+              <p>Your trusted partner for seamless car rental and moving services, offering reliability and convenience every step of the way.</p>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Information</h2>
+              <ul class="list-unstyled">
+                <li><a href="about.html" class="py-2 d-block">About</a></li>
+                <li><a href="services.html" class="py-2 d-block">Services</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Have a Questions?</h2>
+              <div class="block-23 mb-3">
+                <ul>
+                  <li><span class="icon icon-map-marker"></span><span class="text">No. 51, Jalan Abdul Manap, Taman Muhibbah, 30100 Ipoh</span></li>
+                  <li><a href="#"><span class="icon icon-phone"></span><span class="text">+60 17 477 1018</span></a></li>
+                </ul>
+	              <ul class="list-unstyled">
+	                <li><a href="contact.html" class="py-2 d-block">Contact Us</a></li>
+	              </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/helper.js"></script>
+    
+  </body>
+</html>

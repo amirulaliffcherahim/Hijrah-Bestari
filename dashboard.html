@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>KERETA SEWA &  LORI HIJRAH BESTARI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	  <div class="container">
+	    <a class="navbar-brand" href="/">hij<span>rah</span></a>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="oi oi-menu"></span> Menu
+	    </button>
+
+	    <div class="collapse navbar-collapse" id="ftco-nav">
+	      <ul class="navbar-nav ml-auto">
+	        <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+					<li id="dashboardtext" class="nav-item ">
+					  <a id="dashboardlink" href="dashboard" class="nav-link">Dashboard</a>
+					</li>
+	        <li class="nav-item"><a href="about" class="nav-link">About</a></li>
+	        <li class="nav-item"><a href="services" class="nav-link">Services</a></li>
+	        <li class="nav-item"><a href="car" class="nav-link">Cars</a></li>
+	        <li class="nav-item"><a href="contact" class="nav-link">Contact</a></li>
+					<li id="loginLogoutText" class="nav-item">
+					  <a id="loginLogoutLink" href="login.html" class="nav-link">Login</a>
+					</li>
+
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+    <!-- END nav -->
+    
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-dashboard">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <!-- User Info Section -->
+                <div class="user-info">
+                    <h2>Welcome, <span id="userName">Loading...</span></h2>
+                    <p>Your account details and booking history are shown below.</p>
+                </div>
+
+                <!-- Bookings Table -->
+                <div class="table-responsive">
+                    <h3>Your Bookings</h3>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Car</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Status</th>
+                                <th>Total Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingsTable">
+                            <!-- Bookings will be dynamically injected here -->
+                        </tbody>
+                    </table>
+                </div><!-- Update Info Button -->
+								<!-- Update Info Button -->
+								<div class="mt-4">
+								    <button id="updateInfoButton" class="btn btn-primary">Update Your Information</button>
+								</div>				 
+                <!-- Delete Account Button -->
+                <div class="mt-4">
+                    <button class="btn btn-danger" onclick="deleteAccount()">Delete Your Account</button>
+                </div>
+
+
+    <!-- Modal -->
+    <div class="modal" id="updateInfoModal" tabindex="-1" role="dialog" aria-labelledby="updateInfoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateInfoModalLabel">Update Your Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateInfoForm">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" id="firstName" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" name="last_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="text" class="form-control" id="phoneNumber" name="phone_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="icPassportNumber">IC/Passport Number</label>
+                            <input type="text" class="form-control" id="icPassportNumber" name="ic_passport_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="licenseNumber">License Number</label>
+                            <input type="text" class="form-control" id="licenseNumber" name="license_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button id="submitBtn" type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+
+
+
+</section>
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+	// Event listener for the "Update Your Information" button
+document.getElementById('updateInfoButton').addEventListener('click', openUpdateInfoModal);
+
+// Function to fetch user details based on session user ID
+function loadUserDetails() {
+    fetch('/api/check-session')  // Check session for logged-in user
+        .then(response => response.json())
+        .then(data => {
+            if (data.loggedIn) {
+                // If logged in, fetch user's name and populate the page
+                const userName = data.user.first_name;  // Assuming 'name' is part of the user object
+                document.getElementById('userName').textContent = userName;
+
+                // After displaying the user info, load their bookings
+                loadUserBookings(data.user.id);  // Pass the user ID to fetch their bookings
+            } else {
+                // Redirect to login page if user is not logged in
+                window.location.href = 'login.html';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching user details:', error);
+            alert('Failed to load user details. Please try again.');
+            window.location.href = 'login.html'; // Redirect to login if session check fails
+        });
+}
+
+function loadUserBookings(userId) {
+    fetch(`/api/get-bookings/${userId}`)  // Fetch bookings based on user ID
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('bookingsTable');
+            tableBody.innerHTML = ''; // Clear any previous rows
+
+            data.bookings.forEach(booking => {
+                // Ensure total_price is a number
+                const totalPrice = parseFloat(booking.total_price);
+
+                if (isNaN(totalPrice)) {
+                    console.error('Invalid total price:', booking.total_price);
+                    return;  // Skip the booking if the price is invalid
+                }
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${booking.car_name}</td>
+                    <td>${new Date(booking.start_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
+                    <td>${new Date(booking.end_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
+                    <td>${booking.status}</td>
+                    <td>RM ${totalPrice.toFixed(2)}</td>
+                    <td>
+													<a href="#" id="downloadInvoiceBtn" class="btn btn-info btn-sm" style="display: inline-block;" onclick="generateInvoice('downloadInvoiceBtn')" data-booking-id="${booking.booking_id}">Download Invoice</a>
+
+													<!-- Hidden Modal for Invoice Content -->
+													<div id="invoiceModal" style="display: none;">
+													    <div id="invoiceContent">
+													        <h1>Bestari</h1>
+													        <h2>Invoice</h2>
+													        <p><strong>Address:</strong> [Admin Address]</p>
+													        <p><strong>Phone:</strong> [Admin Phone]</p>
+													        <p><strong>Admin Name:</strong> [Admin Name]</p>
+													        <p><strong>Customer Name:</strong> [Customer Name]</p>
+													        <p><strong>Car:</strong> [Car Model]</p>
+													        <p><strong>Car Rate:</strong> [Car Rate]</p>
+													        <p><strong>Start Date:</strong> [Start Date]</p>
+													        <p><strong>End Date:</strong> [End Date]</p>
+													        <p><strong>Total Price:</strong> RM [Total Price]</p>
+													    </div>
+													</div>
+
+                        <button class="btn btn-danger btn-sm" id="cancelBookingBtn${booking.booking_id}" style="display: none;" onclick="cancelBooking(${booking.booking_id})">Cancel</button>
+                        <span id="cancelledStatus${booking.booking_id}" class="text-muted" style="display: none;">Cancelled</span>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+
+                // Conditionally display buttons based on booking status
+                if (booking.status === 'approved') {
+                    document.getElementById(`downloadInvoiceBtn`).style.display = 'inline-block';
+                } else if (booking.status === 'pending') {
+                    document.getElementById(`cancelBookingBtn${booking.booking_id}`).style.display = 'inline-block';
+                } else if (booking.status === 'cancelled') {
+                    document.getElementById(`cancelledStatus${booking.booking_id}`).style.display = 'inline-block';
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching bookings:', error);
+        });
+}
+
+// Function to handle booking cancellation
+function cancelBooking(bookingId) {
+    if (confirm('Are you sure you want to cancel this booking?')) {
+        fetch(`/api/cancel-booking/${bookingId}`, { method: 'PUT' })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Your booking has been cancelled.');
+                    loadUserBookings(userId);  // Reload the bookings after cancellation
+                } else {
+                    alert('Failed to cancel booking. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error cancelling booking:', error);
+                alert('There was an error cancelling the booking. Please try again.');
+            });
+    }
+}
+
+
+// Function to delete user account
+function deleteAccount() {
+    if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        fetch('/api/delete-account', {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Your account has been deleted.');
+                window.location.href = 'index.html'; // Redirect to home page after deletion
+            } else {
+                alert('There was an error deleting your account. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting account:', error);
+            alert('There was an error deleting your account. Please try again.');
+        });
+    }
+}
+// Function to open the modal and populate it with current user data
+function openUpdateInfoModal() {
+    // Fetch current user data
+    fetch('/api/get-user-info')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const user = data.user;
+
+                // Populate the form fields with current user data
+                document.getElementById('firstName').value = user.first_name;
+                document.getElementById('lastName').value = user.last_name;
+                document.getElementById('phoneNumber').value = user.phone_number;
+                document.getElementById('icPassportNumber').value = user.ic_passport_number;
+                document.getElementById('email').value = user.email;
+                document.getElementById('licenseNumber').value = user.license_number;
+                document.getElementById('username').value = user.username;
+
+                // Show the modal
+                const myModal = new bootstrap.Modal(document.getElementById('updateInfoModal'));
+                myModal.show();
+            } else {
+                alert('Error fetching user information: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching user information:', error);
+            alert('An unexpected error occurred. Please try again.');
+        });
+}
+
+// Function to handle form submission
+document.getElementById('updateInfoForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Collect form data
+    const updatedData = {
+        first_name: document.getElementById('firstName').value,
+        last_name: document.getElementById('lastName').value,
+        phone_number: document.getElementById('phoneNumber').value,
+        ic_passport_number: document.getElementById('icPassportNumber').value,
+        email: document.getElementById('email').value,
+        license_number: document.getElementById('licenseNumber').value,
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value // Ensure password is handled securely
+    };
+
+    // Send updated data to the server
+    fetch('/api/update-user-info', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Your information has been updated successfully.');
+            // Close the modal
+            const myModal = new bootstrap.Modal(document.getElementById('updateInfoModal'));
+            myModal.hide();
+        } else {
+            alert('There was an error updating your information. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error updating user information:', error);
+        alert('An unexpected error occurred. Please try again.');
+    });
+});
+
+function generateInvoice(buttonId) {
+    const downloadInvoiceBtn = document.getElementById(buttonId);
+    const invoiceModal = document.getElementById('invoiceModal');
+    const invoiceContent = document.getElementById('invoiceContent');
+
+    // Function to populate and display the invoice modal
+    function populateInvoice(booking) {
+        // Replace placeholders with actual booking data
+        invoiceContent.innerHTML = `
+            <h1>Bestari</h1>
+            <h2>Invoice</h2>
+            <p><strong>Address:</strong> No. 51, Jalan Abdul Manap, Taman Muhibbah, 30100 Ipoh </p>
+            <p><strong>Phone:</strong> +60 17 477 1018</p>
+            <p><strong>Admin Name:</strong> ${booking.admin_name}</p>
+            <p><strong>Customer Name:</strong> ${booking.user_name}</p>
+            <p><strong>Car:</strong> ${booking.car_name}</p>
+            <p><strong>Car Rate:</strong> RM ${booking.daily_rate}</p>
+            <p><strong>Start Date:</strong> ${new Date(booking.start_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
+            <p><strong>End Date:</strong> ${new Date(booking.end_date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
+            <p><strong>Total Price:</strong> RM ${booking.total_price}</p>
+        `;
+        invoiceModal.style.display = 'block';
+    }
+
+    // Event listener for the "Download Invoice" button
+    downloadInvoiceBtn.addEventListener('click', function () {
+        const bookingId = downloadInvoiceBtn.getAttribute('data-booking-id');
+        console.log('Booking ID:', bookingId); // Check if it's being retrieved correctly
+
+        // Fetch booking data from the API
+        fetch(`/api/invoice/${bookingId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.contacts[0]) {
+                    const booking = data.contacts[0];
+                    // Populate the invoice with booking data
+                    populateInvoice(booking);
+
+                    // Generate and download the PDF
+                    html2pdf()
+                        .from(invoiceContent)
+                        .save('invoice.pdf');
+
+                    // Close the modal after generating the PDF
+                    invoiceModal.style.display = 'none';
+                } else {
+                    console.error('No booking data found');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching booking data:', error);
+            });
+    });
+}
+
+// Load user details and bookings when the page is loaded
+window.onload = loadUserDetails;
+</script>
+
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2"><a href="index.html" class="logo">hij<span>rah</span></a></h2>
+              <p>Your trusted partner for seamless car rental and moving services, offering reliability and convenience every step of the way.</p>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Information</h2>
+              <ul class="list-unstyled">
+                <li><a href="about.html" class="py-2 d-block">About</a></li>
+                <li><a href="services.html" class="py-2 d-block">Services</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Have a Questions?</h2>
+              <div class="block-23 mb-3">
+                <ul>
+                  <li><span class="icon icon-map-marker"></span><span class="text">No. 51, Jalan Abdul Manap, Taman Muhibbah, 30100 Ipoh</span></li>
+                  <li><a href="#"><span class="icon icon-phone"></span><span class="text">+60 17 477 1018</span></a></li>
+                </ul>
+	              <ul class="list-unstyled">
+	                <li><a href="contact.html" class="py-2 d-block">Contact Us</a></li>
+	              </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/helper.js"></script>
+    
+  </body>
+</html>

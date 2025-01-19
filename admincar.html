@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>KERETA SEWA &  LORI HIJRAH BESTARI</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style type="text/css">
+        /* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10% auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    border: 1px solid #999;
+    border-radius: 5px;
+    outline: 0;
+    padding: 20px;
+}
+
+    </style>
+  </head>
+  <body>
+    
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	  <div class="container">
+	    <a class="navbar-brand" href="admindashboard">hij<span>rah</span></a>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="oi oi-menu"></span> Menu
+	    </button>
+
+	    <div class="collapse navbar-collapse" id="ftco-nav">
+	      <ul class="navbar-nav ml-auto">
+                    <li id="dashboardtext" class="active nav-item ">
+                      <a id="dashboardlink" href="admindashboard" class="nav-link">Dashboard</a>
+                    </li>
+	        <li class="nav-item"><a href="admincontact" class="nav-link">Contact</a></li>
+	        <li class="nav-item"><a href="admincar" class="nav-link">Cars</a></li>
+					<li id="loginLogoutText" class="nav-item">
+					  <a id="loginLogoutLink" href="login.html" class="nav-link">Login</a>
+					</li>
+
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+    <!-- END nav -->
+    
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+          <div class="col-md-9 ftco-animate pb-5">
+            <h1 class="mb-3 bread">Update Car</h1>
+          </div>
+        </div>
+      </div>
+    </section><section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row" id="car-grid">
+            <!-- Car items will be injected here dynamically -->
+        </div>
+        <div class="row mt-5">
+            <div class="col text-center">
+                <div class="block-27">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="carModal" tabindex="-1" role="dialog" aria-labelledby="carModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="carModalLabel">Car Details</h5>
+      </div>
+      <div class="modal-body" id="carDetails">
+        <!-- Car details will be inserted here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="ftco-section ftco-dashboard">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <!-- Admin Info Section -->
+                <div class="admin-info">
+                    <h2>Welcome, <span id="adminName">Loading...</span></h2>
+                    <p>Your admin dashboard is shown below. You can manage users and bookings.</p>
+                </div>
+
+                <!-- Bookings Table -->
+                <div class="table-responsive">
+                    <h3>All User Bookings</h3>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Car</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Status</th>
+                                <th>Total Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminBookingsTable">
+                            <!-- Bookings will be dynamically injected here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Update Admin Info Button -->
+                <div class="mt-4">
+                    <button id="updateAdminInfo" class="btn btn-primary">Update Admin Information</button>
+                </div>
+
+                <!-- Admin Account Deletion Button -->
+                <div class="mt-4">
+                    <button class="btn btn-danger" onclick="deleteAdminAccount()">Remove Admin</button>
+                </div>
+
+                <!-- User Account Deletion Button -->
+                <div class="mt-4">
+                    <button class="btn btn-danger" onclick="deleteUserAccount()">Remove User</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal Structure -->
+<div id="bookingModal" class="modal" tabindex="-1" role="dialog" style="display: none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Booking Details</h5>
+                <button type="button" class="close" onclick="closeModal()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Booking and User Details will be injected here -->
+                <p id="bookingDetails">Loading...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="updateBookingStatus('approved')">Approve</button>
+                <button type="button" class="btn btn-danger" onclick="updateBookingStatus('rejected')">Reject</button>
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Example of manually closing the modal
+document.querySelector('.btn-secondary').addEventListener('click', function() {
+  $('#carModal').modal('hide');
+});
+
+fetch('/api/cars')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(cars => {
+    const carGrid = document.getElementById('car-grid');
+    carGrid.innerHTML = '';  // Clear grid before appending new items
+
+    // Check if there are cars in the response
+    if (!cars || cars.length === 0) {
+      carGrid.innerHTML = '<p>No cars available.</p>';
+      return;
+    }
+
+    // Loop through the cars data and create car items
+    cars.forEach(car => {
+      // Correct ternary logic to set the image path
+      const imgPath = (car.img_path && car.img_path.trim() !== '') 
+        ? car.img_path.trim()  // Use car.img_path if it exists
+        : '/images/car/default.jpg';  // Fallback if img_path is missing
+
+      const colDiv = document.createElement('div');
+      colDiv.classList.add('col-md-4');  // 3 items per row in Bootstrap grid system
+      colDiv.innerHTML = `
+        <div class="car-wrap rounded ftco-animate">
+          <div class="img rounded d-flex align-items-end" 
+               style="background-image: url('${imgPath}'); background-size: contain; background-position: center; padding-bottom: 56.25%; position: relative;">
+          </div>
+          <div class="text">
+            <h2 class="mb-0"><a href="#" class="view-details" data-id="${car.id}">${car.make} ${car.model}</a></h2>
+            <div class="d-flex mb-3">
+              <span class="cat">${car.make}</span>
+              <p class="price ml-auto">RM${parseFloat(car.daily_rate).toFixed(2)} <span>/day</span></p>
+            </div>
+            <p class="d-flex mb-0 d-block">
+
+              <!-- Details button -->
+<a href="#" class="btn btn-secondary py-2 ml-1 view-details" data-id="${car.car_id}">Details</a>
+            </p>
+
+          </div>
+        </div>
+      `;
+
+      // Append the newly created car item to the grid
+      carGrid.appendChild(colDiv);
+    });
+
+    // Add event listener to open the modal when "Details" is clicked
+    document.querySelectorAll('.view-details').forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();  // Prevent default link behavior
+
+        const carId = event.target.getAttribute('data-id');
+        showCarDetails(carId);
+      });
+    });
+
+    // Add event listener to open the modal when "Details" is clicked
+     document.querySelectorAll('.book-detail').forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();  // Prevent default link behavior
+
+        const carId = event.target.getAttribute('data-id');
+        showBookingModal(carId);
+      });
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching car data:', error);
+    const carGrid = document.getElementById('car-grid');
+    carGrid.innerHTML = '<p>Failed to load car data. Please try again later.</p>';
+  });
+
+// Function to fetch car details and show them in the modal
+function showCarDetails(carId) {
+  // Fetch the car details using the car ID
+  fetch(`/api/cars/${carId}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('HTTP error! status: ' + response.status);
+      }
+      return response.json();
+    })
+    .then(car => {
+      // Prepare the content for the modal
+      const carDetailsDiv = document.getElementById('carDetails');
+      carDetailsDiv.innerHTML = `
+        <div class="car-detail">
+          <div class="car-image" style="background-image: url('${car.img_path}'); background-size: contain; background-position: center; padding-bottom: 56.25%; position: relative;"></div>
+          <ul class="list-unstyled mt-3">
+            <li><strong>Make:</strong> ${car.make}</li>
+            <li><strong>Model:</strong> ${car.model}</li>
+            <li><strong>Year:</strong> ${car.year}</li>
+            <li><strong>Color:</strong> ${car.color}</li>
+            <li><strong>Daily Rate:</strong> RM${parseFloat(car.daily_rate).toFixed(2)} /day</li>
+            <li><strong>Status:</strong> ${car.status}</li>
+            <li><strong>Transmission:</strong> ${car.transmission}</li>
+            <li><strong>Luggage Room:</strong> ${car.luggage_room} liters</li>
+            <li><strong>Seats:</strong> ${car.seats} seats</li>
+          </ul>
+        </div>
+      `;
+
+      // Show the modal
+      $('#carModal').modal('show');
+    })
+    .catch(error => {
+      console.error('Error fetching car details:', error);
+      const carDetailsDiv = document.getElementById('carDetails');
+      carDetailsDiv.innerHTML = '<p>Failed to load car details. Please try again later.</p>';
+    });
+}
+// Function to fetch car details and show them in the booking modal
+function showBookingModal(carId) {
+    fetch(`/api/cars/${carId}`)
+        .then(response => response.json())
+        .then(car => {
+            // Prepare the content for the modal
+            const carDetailsDiv = document.getElementById('carDetails');
+            carDetailsDiv.innerHTML = `
+                <div class="car-detail">
+                    <div class="car-image" style="background-image: url('${car.img_path}'); background-size: cover; background-position: center; padding-bottom: 56.25%; position: relative;"></div>
+                    <ul class="list-unstyled mt-3">
+                        <li><strong>Make:</strong> ${car.make}</li>
+                        <li><strong>Model:</strong> ${car.model}</li>
+                        <li><strong>Year:</strong> ${car.year}</li>
+                        <li><strong>Color:</strong> ${car.color}</li>
+                        <li><strong>Daily Rate:</strong> RM${parseFloat(car.daily_rate).toFixed(2)} /day</li>
+                    </ul>
+                </div>
+            `;
+            const dailyRate = parseFloat(car.daily_rate);
+
+            // Show the modal
+            $('#bookingModal').modal('show');
+
+            // Bind date listeners to calculate price
+            bindDateListeners(dailyRate, carId);
+        })
+        .catch(error => {
+            console.error('Error fetching car details:', error);
+            alert('Failed to load car details. Please try again later.');
+        });
+}
+
+// Function to bind date change listeners and calculate price
+function bindDateListeners(dailyRate, carId) {
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+
+    // When either date changes, calculate the total price
+    startDateInput.addEventListener('change', function() {
+        updatePrice(dailyRate);
+    });
+    endDateInput.addEventListener('change', function() {
+        updatePrice(dailyRate);
+    });
+
+    // Handle booking confirmation
+    document.getElementById('bookNowButton').addEventListener('click', function() {
+        handleBookingSubmission(dailyRate, carId);
+    });
+}
+
+// Function to update the price based on selected start and end dates
+function updatePrice(dailyRate) {
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+    
+    if (startDate && endDate) {
+        const totalPrice = calculateTotalPrice(startDate, endDate, dailyRate);
+        document.getElementById('totalPrice').value = totalPrice.toFixed(2);  // Numeric price only
+    }
+}
+
+// Function to calculate total price based on selected dates and daily rate
+function calculateTotalPrice(startDate, endDate, dailyRate) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const timeDiff = end - start;
+    const dayDiff = timeDiff / (1000 * 3600 * 24); // Convert milliseconds to days
+    return dayDiff * dailyRate;
+}
+
+// Function to check if the user is logged in
+function checkUserLogin() {
+    return fetch('/api/check-session')
+        .then(response => response.json())
+        .then(data => {
+            if (data.loggedIn) {
+                return data.user; // Return the user object if logged in
+            } else {
+                return null;  // Return null if not logged in
+            }
+        })
+        .catch(error => {
+            console.error('Error checking session:', error);
+            return null;  // Return null in case of error
+        });
+}
+
+// Function to handle booking submission (sending data to the server)
+function handleBookingSubmission(dailyRate, carId) {
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+    const totalPrice = parseFloat(document.getElementById('totalPrice').value);  // Get numeric total price
+
+    if (!startDate || !endDate || !totalPrice) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    // Check if the user is logged in before proceeding
+    checkUserLogin().then(user => {
+        if (!user) {
+            alert('Please log in to complete the booking');
+            window.location.href = 'login.html'; // Redirect to login page
+            return; // Do not proceed if the user is not logged in
+        }
+
+        // Prepare the booking data
+        const bookingData = {
+            startDate,
+            endDate,
+            totalPrice,  // Send numeric value only
+            carId,
+            userId: user.id  // Use the user id from the session
+        };
+
+        console.log(bookingData); // Log data to check it before sending
+
+        // Send booking data to the backend
+        fetch('/api/book-car', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bookingData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === 'Booking successful!') {
+                alert('Booking successful!');
+                $('#bookingModal').modal('hide');  // Close the modal
+            } else {
+                alert('Booking failed. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Booking failed. Please try again later.');
+        });
+    });
+}
+</script>
+
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2"><a href="index.html" class="logo">hij<span>rah</span></a></h2>
+              <p>Your trusted partner for seamless car rental and moving services, offering reliability and convenience every step of the way.</p>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Information</h2>
+              <ul class="list-unstyled">
+                <li><a href="about.html" class="py-2 d-block">About</a></li>
+                <li><a href="services.html" class="py-2 d-block">Services</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Have a Questions?</h2>
+              <div class="block-23 mb-3">
+                <ul>
+                  <li><span class="icon icon-map-marker"></span><span class="text">No. 51, Jalan Abdul Manap, Taman Muhibbah, 30100 Ipoh</span></li>
+                  <li><a href="#"><span class="icon icon-phone"></span><span class="text">+60 17 477 1018</span></a></li>
+                </ul>
+	              <ul class="list-unstyled">
+	                <li><a href="contact.html" class="py-2 d-block">Contact Us</a></li>
+	              </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/helper.js"></script>
+    
+  </body>
+</html>

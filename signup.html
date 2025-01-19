@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KERETA SEWA & LORI HIJRAH BESTARI - Signup</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <style>
+    /* Additional CSS to fix layout */
+    .wrapper {
+      padding: 20px;
+    }
+    .row input {
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .button input {
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .login-link {
+      text-align: center;
+      margin-top: 15px;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="title"><span>Signup Form</span></div>
+    <form id="signup-form">
+      <div class="row">
+        <i class="fas fa-user"></i>
+        <input type="text" id="first-name" placeholder="First Name" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-user"></i>
+        <input type="text" id="last-name" placeholder="Last Name" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-phone"></i>
+        <input type="text" id="phone-number" placeholder="Phone Number" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-id-card"></i>
+        <input type="text" id="ic-passport-number" placeholder="IC/Passport Number" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="email" placeholder="Email" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-id-card"></i>
+        <input type="text" id="license-number" placeholder="License Number" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-id-card"></i>
+        <input type="text" id="username" placeholder="Username" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Password" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="confirm-password" placeholder="Confirm Password" required />
+      </div>
+      <div class="row button">
+        <input type="submit" value="Signup" />
+      </div>
+      <div class="login-link">Already a member? <a href="login.html">Login now</a></div>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="/helper.js"></script>
+</body>
+</html>
